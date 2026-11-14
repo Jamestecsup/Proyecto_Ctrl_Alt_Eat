@@ -9,7 +9,6 @@
         <p>{{ $reserva->quantity }} porciones · {{ $reserva->oferta->establecimiento->name }}</p>
         <p>Método elegido: <strong>{{ $reserva->metodoPago->name }}</strong></p>
         <p class="price">Total: S/ {{ number_format($reserva->total, 2) }}</p>
-        <p class="muted">Esta demostración registra el pago como completado. No se realiza un cobro real.</p>
         <form method="POST" action="{{ route('reservas.confirmar-pago', $reserva) }}">@csrf<button class="btn">Confirmar pago</button></form>
     </div>
 </div>
