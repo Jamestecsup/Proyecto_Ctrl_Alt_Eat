@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\EstablecimientoController;
 use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\OfertaController;
@@ -15,9 +16,7 @@ Route::view('/contacto', 'informacion.contacto')->name('contacto');
 Route::get('/ofertas', [ReservaController::class, 'listarOfertas'])->name('ofertas.listar');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/cuenta', function () {
-        return view('cuenta');
-    })->name('dashboard');
+    Route::get('/cuenta', [CuentaController::class, 'mostrar'])->name('dashboard');
 
     Route::get('/reservas/crear', [ReservaController::class, 'mostrarFormularioReserva'])->name('reservas.crear');
     Route::post('/reservas', [ReservaController::class, 'guardarReserva'])->name('reservas.guardar');
