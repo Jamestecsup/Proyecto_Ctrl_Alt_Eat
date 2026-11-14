@@ -32,8 +32,8 @@ class OfertaController extends Controller
     {
         $datos = $request->validate([
             'name' => ['required', 'string', 'max:150'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'establishment_id' => ['required', 'exists:establishments,id'],
+            'category_id' => ['required', 'exists:categorias,id'],
+            'establishment_id' => ['required', 'exists:establecimientos,id'],
             'description' => ['nullable', 'string', 'max:1000'],
             'stock' => ['required', 'integer', 'min:0'],
             'regular_price' => ['required', 'numeric', 'gt:0'],
@@ -60,8 +60,8 @@ class OfertaController extends Controller
     {
         $datos = $request->validate([
             'name' => ['required', 'string', 'max:150'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'establishment_id' => ['required', 'exists:establishments,id'],
+            'category_id' => ['required', 'exists:categorias,id'],
+            'establishment_id' => ['required', 'exists:establecimientos,id'],
             'description' => ['nullable', 'string', 'max:1000'],
             'stock' => ['required', 'integer', 'min:0'],
             'regular_price' => ['required', 'numeric', 'gt:0'],

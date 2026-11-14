@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Reserva extends Model
 {
-    protected $table = 'reservations';
+    protected $table = 'reservas';
     protected $fillable = ['user_id', 'offer_id', 'payment_method_id', 'quantity', 'total', 'status', 'pickup_code', 'rating', 'review'];
 
     public function usuario(): BelongsTo

@@ -62,4 +62,4 @@ Route::middleware(['auth', 'administrador'])->prefix('administracion')->name('ad
     Route::delete('/ofertas/{oferta}', [OfertaController::class, 'desactivar'])->name('ofertas.desactivar');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__.'/acceso.php';

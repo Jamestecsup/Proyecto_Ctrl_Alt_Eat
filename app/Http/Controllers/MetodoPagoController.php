@@ -28,7 +28,7 @@ class MetodoPagoController extends Controller
     public function guardar(Request $request): RedirectResponse
     {
         $datos = $request->validate([
-            'name' => ['required', 'string', 'max:100', 'unique:payment_methods,name'],
+            'name' => ['required', 'string', 'max:100', 'unique:metodos_pago,name'],
             'details' => ['nullable', 'string', 'max:255'],
             'active' => ['required', 'boolean'],
         ]);
@@ -48,7 +48,7 @@ class MetodoPagoController extends Controller
     public function actualizar(Request $request, MetodoPago $metodoPago): RedirectResponse
     {
         $datos = $request->validate([
-            'name' => ['required', 'string', 'max:100', Rule::unique('payment_methods', 'name')->ignore($metodoPago->id)],
+            'name' => ['required', 'string', 'max:100', Rule::unique('metodos_pago', 'name')->ignore($metodoPago->id)],
             'details' => ['nullable', 'string', 'max:255'],
             'active' => ['required', 'boolean'],
         ]);

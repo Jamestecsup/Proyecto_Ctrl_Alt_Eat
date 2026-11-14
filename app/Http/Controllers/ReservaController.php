@@ -41,9 +41,9 @@ class ReservaController extends Controller
         abort_unless($request->user()->role === 'cliente', 403);
 
         $datos = $request->validate([
-            'oferta_id' => ['required', 'exists:offers,id'],
+            'oferta_id' => ['required', 'exists:ofertas,id'],
             'cantidad' => ['required', 'integer', 'min:1'],
-            'metodo_pago_id' => ['required', 'exists:payment_methods,id'],
+            'metodo_pago_id' => ['required', 'exists:metodos_pago,id'],
         ]);
 
         $oferta = Oferta::findOrFail($datos['oferta_id']);

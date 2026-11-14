@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MetodoPago extends Model
 {
-    protected $table = 'payment_methods';
+    protected $table = 'metodos_pago';
     protected $fillable = ['name', 'details', 'active'];
 
     protected function casts(): array

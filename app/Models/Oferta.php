@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Oferta extends Model
 {
-    protected $table = 'offers';
+    protected $table = 'ofertas';
     protected $fillable = ['category_id', 'establishment_id', 'name', 'description', 'stock', 'regular_price', 'sale_price', 'pickup_until', 'image', 'active'];
 
     protected function casts(): array

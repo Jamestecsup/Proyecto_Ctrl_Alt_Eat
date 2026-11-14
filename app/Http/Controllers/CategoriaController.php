@@ -28,7 +28,7 @@ class CategoriaController extends Controller
     public function guardar(Request $request): RedirectResponse
     {
         $datos = $request->validate([
-            'name' => ['required', 'string', 'max:100', 'unique:categories,name'],
+            'name' => ['required', 'string', 'max:100', 'unique:categorias,name'],
             'description' => ['nullable', 'string', 'max:1000'],
             'active' => ['required', 'boolean'],
         ]);
@@ -48,7 +48,7 @@ class CategoriaController extends Controller
     public function actualizar(Request $request, Categoria $categoria): RedirectResponse
     {
         $datos = $request->validate([
-            'name' => ['required', 'string', 'max:100', Rule::unique('categories', 'name')->ignore($categoria->id)],
+            'name' => ['required', 'string', 'max:100', Rule::unique('categorias', 'name')->ignore($categoria->id)],
             'description' => ['nullable', 'string', 'max:1000'],
             'active' => ['required', 'boolean'],
         ]);

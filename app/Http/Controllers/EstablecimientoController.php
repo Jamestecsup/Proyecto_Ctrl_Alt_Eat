@@ -29,7 +29,7 @@ class EstablecimientoController extends Controller
     {
         $datos = $request->validate([
             'name' => ['required', 'string', 'max:150'],
-            'tax_id' => ['required', 'digits:11', 'unique:establishments,tax_id'],
+            'tax_id' => ['required', 'digits:11', 'unique:establecimientos,tax_id'],
             'address' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:30'],
             'active' => ['required', 'boolean'],
@@ -51,7 +51,7 @@ class EstablecimientoController extends Controller
     {
         $datos = $request->validate([
             'name' => ['required', 'string', 'max:150'],
-            'tax_id' => ['required', 'digits:11', Rule::unique('establishments', 'tax_id')->ignore($establecimiento->id)],
+            'tax_id' => ['required', 'digits:11', Rule::unique('establecimientos', 'tax_id')->ignore($establecimiento->id)],
             'address' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:30'],
             'active' => ['required', 'boolean'],
