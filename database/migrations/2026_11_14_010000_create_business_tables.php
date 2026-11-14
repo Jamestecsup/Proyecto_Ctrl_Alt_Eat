@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->text('description')->nullable();
@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('establishments', function (Blueprint $table) {
+        Schema::create('establecimientos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('tax_id', 11)->unique();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('payment_methods', function (Blueprint $table) {
+        Schema::create('metodos_pago', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('details')->nullable();
@@ -34,10 +34,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('offers', function (Blueprint $table) {
+        Schema::create('ofertas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->restrictOnDelete();
-            $table->foreignId('establishment_id')->constrained()->restrictOnDelete();
+            $table->foreignId('category_id')->constrained('categorias')->restrictOnDelete();
+            $table->foreignId('establishment_id')->constrained('establecimientos')->restrictOnDelete();
             $table->string('name');
             $table->text('description')->nullable();
             $table->unsignedInteger('stock');
@@ -49,15 +49,15 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('reservas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('offer_id')->constrained()->restrictOnDelete();
-            $table->foreignId('payment_method_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('user_id')->constrained('usuarios')->cascadeOnDelete();
+            $table->foreignId('offer_id')->constrained('ofertas')->restrictOnDelete();
+            $table->foreignId('payment_method_id')->nullable()->constrained('metodos_pago')->nullOnDelete();
             $table->unsignedInteger('quantity');
             $table->decimal('total', 8, 2);
             $table->string('status')->default('reservado');
-            $table->string('qr_code')->nullable()->unique();
+            $table->string('pickup_code')->nullable()->unique();
             $table->unsignedTinyInteger('rating')->nullable();
             $table->string('review', 300)->nullable();
             $table->timestamps();
@@ -66,10 +66,10 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('reservations');
-        Schema::dropIfExists('offers');
-        Schema::dropIfExists('payment_methods');
-        Schema::dropIfExists('establishments');
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('reservas');
+        Schema::dropIfExists('ofertas');
+        Schema::dropIfExists('metodos_pago');
+        Schema::dropIfExists('establecimientos');
+        Schema::dropIfExists('categorias');
     }
 };
